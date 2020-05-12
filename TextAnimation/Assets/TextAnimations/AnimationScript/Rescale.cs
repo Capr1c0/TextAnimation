@@ -15,6 +15,6 @@ public class Rescale : MonoBehaviour {
         }
         this.gameObject.transform.localScale = max;
         //必ず
-        Destroy (this.gameObject.GetComponent<Roll> ());
+        Destroy (this.gameObject.GetComponent<Rescale> ());
     }
 }

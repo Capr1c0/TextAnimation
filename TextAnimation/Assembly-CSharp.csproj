@@ -55,27 +55,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Test.cs" />
+     <Compile Include="Assets\TextAnimations\AnimationScript\ColorChange.cs" />
+     <Compile Include="Assets\TextAnimations\AnimationScript\Move.cs" />
+     <Compile Include="Assets\TextAnimations\AnimationScript\Noise.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Rescale.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Roll.cs" />
+     <Compile Include="Assets\TextAnimations\AnimationScript\Template.cs" />
+     <Compile Include="Assets\TextAnimations\Test.cs" />
      <Compile Include="Assets\TextAnimations\TextAnimator.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>F:/unity/TextAnimation/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>K:/Program Files (HDD)/Unity/2019.1.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -261,13 +265,13 @@
  <HintPath>K:/Program Files (HDD)/Unity/2019.1.10f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>F:/unity/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>F:/unity/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>F:/unity/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>F:/Git/source/repos/TextAnimation/TextAnimation/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>K:/Program Files (HDD)/Unity/2019.1.10f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

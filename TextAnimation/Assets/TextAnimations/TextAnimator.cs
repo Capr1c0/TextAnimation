@@ -6,6 +6,12 @@ using UnityEngine;
 public class TextAnimationRoll { }
 //Animation Rescale
 public class TextAnimationRescale { }
+//Animation Noise
+// public class TextAnimationNoise { }
+//Animation Move
+public class TextAnimationMove { }
+//Animation ColorChange
+public class TextAnimationColorChange { }
 
 //Time
 public class TextAnimationTime {
@@ -35,6 +41,30 @@ public class TextAnimationVecMax {
     public TextAnimationVecMax (Vector3 arg) { Max = arg; }
 }
 
+// //Count
+// public class TextAnimationCount {
+//     public int Count { get; set; }
+//     public TextAnimationCount (int arg) { Count = arg; }
+// }
+
+// //RandomRnage
+// public class TextAnimationRandomRnage {
+//     public Vector2 RandomRnage { get; set; }
+//     public TextAnimationRandomRnage (Vector2 arg) { RandomRnage = arg; }
+// }
+
+//Name
+public class TextAnimationName {
+    public string Name { get; set; }
+    public TextAnimationName (string arg) { Name = arg; }
+}
+
+//Color
+public class TextAnimationColor {
+    public Color Color { get; set; }
+    public TextAnimationColor (Color arg) { Color = arg; }
+}
+
 public class TextAnimationHash {
     public object[] paramators;
     public TextAnimationHash (params object[] ob) {
@@ -49,6 +79,11 @@ public class TextAnimator {
     private float Angle = 45f;
     private Vector3 VecMin = new Vector3 (0f, 0f, 0f);
     private Vector3 VecMax = new Vector3 (0f, 0f, 0f);
+    private int Count = 1;
+    private Vector2 RandomRnage = new Vector2 (0f, 0f);
+    public string Name = "";
+    public Color Color = new Color (0f, 0f, 0f, 0f);
+
     public TextAnimator (GameObject g, TextAnimationHash hash) {
         Target = g;
         //Type判定
@@ -60,6 +95,15 @@ public class TextAnimator {
                     break;
                 case TextAnimationRescale r:
                     AnimationType = r;
+                    break;
+                    // case TextAnimationNoise n:
+                    //     AnimationType = n;
+                    //     break;
+                case TextAnimationMove m:
+                    AnimationType = m;
+                    break;
+                case TextAnimationColorChange x:
+                    AnimationType = x;
                     break;
 
                     //Arg
@@ -75,7 +119,18 @@ public class TextAnimator {
                 case TextAnimationVecMax v:
                     VecMax = v.Max;
                     break;
-
+                    // case TextAnimationCount c:
+                    //     Count = c.Count;
+                    //     break;
+                    // case TextAnimationRandomRnage r:
+                    //     RandomRnage = r.RandomRnage;
+                    //     break;
+                case TextAnimationName n:
+                    Name = n.Name;
+                    break;
+                case TextAnimationColor c:
+                    Color = c.Color;
+                    break;
                 default:
                     break;
             }
@@ -92,12 +147,37 @@ public class TextAnimator {
                 Rescale rescale = Target.AddComponent<Rescale> ();
                 yield return rescale.rescale (Time, VecMin, VecMax);
                 break;
+                // case TextAnimationNoise tmp:
+                //     Noise noise = Target.AddComponent<Noise> ();
+                //     yield return noise.noise (Time, Count, RandomRnage);
+                //     break;
+            case TextAnimationMove tmp:
+                Move move = Target.AddComponent<Move> ();
+                yield return move.move (Time, VecMax);
+                break;
+            case TextAnimationColorChange tmp:
+                ColorChange ColorChange = Target.AddComponent<ColorChange> ();
+                yield return ColorChange.colorchange (Time, Name, Color);
+                break;
             default:
                 break;
         }
     }
 
-    public IEnumerator PlayMultiple (params TextAnimator[] textAnimators) {
+    public static IEnumerator Play (params TextAnimator[] textAnimators) {
+        for (int i = 0; i < textAnimators.Length; i++) {
+            yield return (textAnimators[i].Play ());
+        }
+    }
+    public static IEnumerator PlayLoop (params TextAnimator[] textAnimators) {
+        while (true) {
+            for (int i = 0; i < textAnimators.Length; i++) {
+                yield return (textAnimators[i].Play ());
+            }
+        }
+    }
+
+    public static IEnumerator PlayMultiple (params TextAnimator[] textAnimators) {
         List<IEnumerator> WaitComand = new List<IEnumerator> ();
         for (int i = 0; i < textAnimators.Length; i++) {
             WaitComand.Add (textAnimators[i].Play ());
