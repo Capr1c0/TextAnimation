@@ -41,8 +41,9 @@ public class Test : MonoBehaviour {
         List<TextAnimationHash> t = new List<TextAnimationHash> ();
         foreach (object ob in ease) {
             t.Add (new TextAnimationHash (
-                new TextAnimationMove (),
+                new TextAnimationRoll (),
                 new TextAnimationTime (1f),
+                new TextAnimationAngle (360f),
                 new TextAnimationVecMax (new Vector3 (-4.1f, 0f, -4f)),
                 ob
             ));
