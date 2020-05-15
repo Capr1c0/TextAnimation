@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+//debug
 //using UnityEngine.UI;
 
 public class easeLinear { }

@@ -166,7 +166,7 @@ public class TextAnimator : MonoBehaviour {
                 //     break;
             case TextAnimationMove tmp:
                 Move move = Target.AddComponent<Move> ();
-                yield return move.move (Time, VecMax);
+                yield return move.move (Time, VecMax, easetype);
                 break;
             case TextAnimationColorChange tmp:
                 ColorChange ColorChange = Target.AddComponent<ColorChange> ();
@@ -186,7 +186,9 @@ public class TextAnimator : MonoBehaviour {
         while (true) {
             for (int i = 0; i < textAnimators.Length; i++) {
                 yield return (textAnimators[i].Play ());
-                yield return new WaitForSecondsRealtime(1f);
+                //debug
+                //yield return new WaitForSecondsRealtime(1f);
+                //textAnimators[i].Target.transform.localPosition = new Vector3 (4.1f, 0f, -4f);
             }
         }
     }

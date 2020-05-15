@@ -39,15 +39,11 @@ public class Test : MonoBehaviour {
             new easeInOutBounce ()
         };
         List<TextAnimationHash> t = new List<TextAnimationHash> ();
-        TextAnimationHash rol1 = new TextAnimationHash (
-            new TextAnimationRoll (),
-            new TextAnimationTime (1f),
-            new TextAnimationAngle (180f)
-        );
         foreach (object ob in ease) {
-            t.Add (new TextAnimationHash (new TextAnimationRoll (),
+            t.Add (new TextAnimationHash (
+                new TextAnimationMove (),
                 new TextAnimationTime (1f),
-                new TextAnimationAngle (180f),
+                new TextAnimationVecMax (new Vector3 (-4.1f, 0f, -4f)),
                 ob
             ));
         }
