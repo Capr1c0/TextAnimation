@@ -5,30 +5,63 @@ using UnityEngine;
 public class Test : MonoBehaviour {
     public GameObject tests;
     private void Start () {
-
+        List<object> ease = new List<object> () {
+            new easeLinear (),
+            new easeInSine (),
+            new easeOutSine (),
+            new easeInOutSine (),
+            new easeInQuad (),
+            new easeOutQuad (),
+            new easeInOutQuad (),
+            new easeInCubic (),
+            new easeOutCubic (),
+            new easeInOutCubic (),
+            new easeInQuart (),
+            new easeOutQuart (),
+            new easeInOutQuart (),
+            new easeInQuint (),
+            new easeOutQuint (),
+            new easeInOutQuint (),
+            new easeInExpo (),
+            new easeOutExpo (),
+            new easeInOutExpo (),
+            new easeInCirc (),
+            new easeOutCirc (),
+            new easeInOutCirc (),
+            new easeInBack (),
+            new easeOutBack (),
+            new easeInOutBack (),
+            new easeInElastic (),
+            new easeOutElastic (),
+            new easeInOutElastic (),
+            new easeInBounce (),
+            new easeOutBounce (),
+            new easeInOutBounce ()
+        };
+        List<TextAnimationHash> t = new List<TextAnimationHash> ();
         TextAnimationHash rol1 = new TextAnimationHash (
             new TextAnimationRoll (),
             new TextAnimationTime (1f),
-            new TextAnimationAngle (180f),
-            new easeLinear()
+            new TextAnimationAngle (180f)
         );
-        TextAnimationHash rol2 = new TextAnimationHash (
-            new TextAnimationRoll (),
-            new TextAnimationTime (1f),
-            new TextAnimationAngle (180f),
-            new easeInSine()
-        );
+        foreach (object ob in ease) {
+            t.Add (new TextAnimationHash (new TextAnimationRoll (),
+                new TextAnimationTime (1f),
+                new TextAnimationAngle (180f),
+                ob
+            ));
+        }
+        List<TextAnimator> ta = new List<TextAnimator> ();
+        foreach (TextAnimationHash tah in t) {
+            ta.Add (new TextAnimator (tests, tah));
+        }
 
-        TextAnimator[] t3 = new TextAnimator[] {
-            new TextAnimator (tests, rol1),
-            new TextAnimator (tests, rol2)
-        };
-        StartCoroutine (test (t3));
+        StartCoroutine (test (ta.ToArray ()));
     }
 
     private IEnumerator test (TextAnimator[] t) {
         while (true) {
-            yield return StartCoroutine (TextAnimator.Play (t));
+            yield return StartCoroutine (TextAnimator.PlayLoop (t));
         }
     }
 }

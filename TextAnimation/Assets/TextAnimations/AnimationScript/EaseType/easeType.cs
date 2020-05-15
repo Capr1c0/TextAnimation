@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class easeLinear { }
 public class easeInSine { }
@@ -39,6 +40,8 @@ public class EaseSwith {
         EaseObject = ob;
     }
     public Func<float, float, float> get () {
+        //Debug
+        GameObject.Find ("TestText").GetComponent<Text> ().text = EaseObject.GetType ().ToString ();
         switch (EaseObject) {
             case easeLinear el:
                 return (NowTime, TIME) => { float x = (NowTime / TIME); return x; };
@@ -173,7 +176,7 @@ public class EaseSwith {
                 #region  easeBounce
             case easeInBounce eib:
                 return (NowTime, TIME) => {
-                    float x = (NowTime / TIME);
+                    float x1 = (NowTime / TIME);
                     Func<float, float> easeOutBounce_tmp = delegate (float x) {
                         float n1 = 7.5625f;
                         float d1 = 2.75f;
@@ -187,7 +190,7 @@ public class EaseSwith {
                             return n1 * (x -= 2.625f / d1) * x + 0.984375f;
                         }
                     };
-                    return (float) (1 - easeOutBounce_tmp (1 - x));
+                    return (float) (1 - easeOutBounce_tmp (1 - x1));
                 };
             case easeOutBounce eob:
                 return (NowTime, TIME) => {
@@ -206,7 +209,7 @@ public class EaseSwith {
                 };
             case easeInOutBounce eiob:
                 return (NowTime, TIME) => {
-                    float x = (NowTime / TIME);
+                    float x2 = (NowTime / TIME);
                     Func<float, float> easeOutBounce_tmp = delegate (float x) {
                         float n1 = 7.5625f;
                         float d1 = 2.75f;
@@ -220,9 +223,9 @@ public class EaseSwith {
                             return n1 * (x -= 2.625f / d1) * x + 0.984375f;
                         }
                     };
-                    return (float) (x < 0.5 ?
-                        (1 - easeOutBounce_tmp (1 - 2 * x)) / 2 :
-                        (1 + easeOutBounce_tmp (2 * x - 1)) / 2);
+                    return (float) (x2 < 0.5 ?
+                        (1 - easeOutBounce_tmp (1 - 2 * x2)) / 2 :
+                        (1 + easeOutBounce_tmp (2 * x2 - 1)) / 2);
                 };
                 #endregion
                 //default

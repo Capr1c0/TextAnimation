@@ -92,7 +92,7 @@ public class TextAnimator : MonoBehaviour {
     private Vector2 RandomRnage = new Vector2 (0f, 0f);
     public string Name = "";
     public Color Color = new Color (0f, 0f, 0f, 0f);
-    public easetype easetype = new easetype (new easeLinear());
+    public easetype easetype = new easetype (new easeLinear ());
     public TextAnimator (GameObject g, TextAnimationHash hash) {
         Target = g;
         //Type判定
@@ -186,6 +186,7 @@ public class TextAnimator : MonoBehaviour {
         while (true) {
             for (int i = 0; i < textAnimators.Length; i++) {
                 yield return (textAnimators[i].Play ());
+                yield return new WaitForSecondsRealtime(1f);
             }
         }
     }
