@@ -11,7 +11,7 @@ public class Rescale : MonoBehaviour {
         while (NowTime < Time) {
             this.gameObject.transform.localScale += VecSpan;
             NowTime += TimeSpan;
-            yield return new WaitForSeconds (TimeSpan);
+            yield return new WaitForSecondsRealtime (TimeSpan);
         }
         this.gameObject.transform.localScale = max;
         //必ず

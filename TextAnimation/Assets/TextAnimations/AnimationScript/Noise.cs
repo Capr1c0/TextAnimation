@@ -10,7 +10,7 @@ public class Noise : MonoBehaviour {
             GameObject g = Instantiate (this.gameObject);
             g.transform.SetParent (this.gameObject.transform, false);
             Wait.Add (NoiseGen (g, RandomRange));
-            yield return new WaitForSeconds (TimeSpan);
+            yield return new WaitForSecondsRealtime (TimeSpan);
         }
         yield return Wait;
         //必ず

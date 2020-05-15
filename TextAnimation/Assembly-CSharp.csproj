@@ -56,11 +56,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\TextAnimations\AnimationScript\ColorChange.cs" />
+     <Compile Include="Assets\TextAnimations\AnimationScript\EaseType\easeType.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Move.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Noise.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Rescale.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Roll.cs" />
      <Compile Include="Assets\TextAnimations\AnimationScript\Template.cs" />
+     <Compile Include="Assets\TextAnimations\CoroutineHandler.cs" />
      <Compile Include="Assets\TextAnimations\Test.cs" />
      <Compile Include="Assets\TextAnimations\TextAnimator.cs" />
  <Reference Include="Unity.Timeline.Editor">

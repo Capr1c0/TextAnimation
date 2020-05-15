@@ -65,6 +65,15 @@ public class TextAnimationColor {
     public TextAnimationColor (Color arg) { Color = arg; }
 }
 
+//easetype
+public class easetype {
+    public object paramator;
+    public easetype (object ob) {
+        paramator = ob;
+    }
+}
+
+//Hash
 public class TextAnimationHash {
     public object[] paramators;
     public TextAnimationHash (params object[] ob) {
@@ -72,7 +81,7 @@ public class TextAnimationHash {
     }
 }
 
-public class TextAnimator {
+public class TextAnimator : MonoBehaviour {
     private GameObject Target;
     private object AnimationType = new TextAnimationRoll ();
     private float Time = 1f;
@@ -83,7 +92,7 @@ public class TextAnimator {
     private Vector2 RandomRnage = new Vector2 (0f, 0f);
     public string Name = "";
     public Color Color = new Color (0f, 0f, 0f, 0f);
-
+    public easetype easetype = new easetype (new easeLinear());
     public TextAnimator (GameObject g, TextAnimationHash hash) {
         Target = g;
         //Type判定
@@ -131,6 +140,10 @@ public class TextAnimator {
                 case TextAnimationColor c:
                     Color = c.Color;
                     break;
+                case object o when o.GetType ().ToString ().Contains ("ease"):
+                    //easetype
+                    easetype = new easetype (o);
+                    break;
                 default:
                     break;
             }
@@ -141,7 +154,7 @@ public class TextAnimator {
         switch (AnimationType) {
             case TextAnimationRoll tmp:
                 Roll roll = Target.AddComponent<Roll> ();
-                yield return roll.roll (Time, Angle);
+                yield return roll.roll (Time, Angle, easetype);
                 break;
             case TextAnimationRescale tmp:
                 Rescale rescale = Target.AddComponent<Rescale> ();
@@ -178,10 +191,16 @@ public class TextAnimator {
     }
 
     public static IEnumerator PlayMultiple (params TextAnimator[] textAnimators) {
-        List<IEnumerator> WaitComand = new List<IEnumerator> ();
+        List<Coroutine> WaitComand = new List<Coroutine> ();
         for (int i = 0; i < textAnimators.Length; i++) {
-            WaitComand.Add (textAnimators[i].Play ());
+            WaitComand.Add (CoroutineHandler.StartStaticCoroutine (textAnimators[i].Play ()));
         }
-        yield return WaitComand;
+        foreach (Coroutine c in WaitComand) {
+            yield return c;
+
+        }
+        // for (int i = 0; i < textAnimators.Length; i++) {
+        //     yield return WaitComand[i];
+        // }
     }
 }

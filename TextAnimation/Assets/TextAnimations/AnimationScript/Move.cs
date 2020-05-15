@@ -11,7 +11,7 @@ public class Move : MonoBehaviour {
         while (NowTime < Time) {
             this.gameObject.transform.localPosition+=Sabun;
             NowTime += TimeSpan;
-            yield return new WaitForSeconds (TimeSpan);
+            yield return new WaitForSecondsRealtime (TimeSpan);
         }
         this.gameObject.transform.localPosition = ans;
         //必ず

@@ -5,63 +5,30 @@ using UnityEngine;
 public class Test : MonoBehaviour {
     public GameObject tests;
     private void Start () {
-        TextAnimationHash res1 = new TextAnimationHash (
-            new TextAnimationRescale (),
-            new TextAnimationTime (0.2f),
-            new TextAnimationVecMax (new Vector3 (5f, 5f, 5f)),
-            new TextAnimationVecMin (new Vector3 (1f, 1f, 1f))
-        );
-        TextAnimationHash res2 = new TextAnimationHash (
-            new TextAnimationRescale (),
-            new TextAnimationTime (0.2f),
-            new TextAnimationVecMax (new Vector3 (1f, 1f, 1f)),
-            new TextAnimationVecMin (new Vector3 (5f, 5f, 5f))
-        );
 
         TextAnimationHash rol1 = new TextAnimationHash (
             new TextAnimationRoll (),
-            new TextAnimationTime (0.2f),
-            new TextAnimationAngle (180f)
+            new TextAnimationTime (1f),
+            new TextAnimationAngle (180f),
+            new easeLinear()
         );
         TextAnimationHash rol2 = new TextAnimationHash (
             new TextAnimationRoll (),
-            new TextAnimationTime (0.2f),
-            new TextAnimationAngle (-180f)
-        );
-        TextAnimationHash m1 = new TextAnimationHash (
-            new TextAnimationMove (),
-            new TextAnimationTime (0.5f),
-            new TextAnimationVecMax (new Vector3 (5f, 5f, 0f))
-        );
-        TextAnimationHash m2 = new TextAnimationHash (
-            new TextAnimationMove (),
-            new TextAnimationTime (0.5f),
-            new TextAnimationVecMax (new Vector3 (-5f, -5f, 0f))
+            new TextAnimationTime (1f),
+            new TextAnimationAngle (180f),
+            new easeInSine()
         );
 
-        TextAnimationHash c1 = new TextAnimationHash (
-            new TextAnimationColorChange (),
-            new TextAnimationTime (0.5f),
-            new TextAnimationName ("_Color"),
-            new TextAnimationColor (new Color (0f, 0f, 0f, 0.5f))
-        );
-        TextAnimationHash c2 = new TextAnimationHash (
-            new TextAnimationColorChange (),
-            new TextAnimationTime (0.5f),
-            new TextAnimationName ("_Color"),
-            new TextAnimationColor (new Color (1f, 1f, 1f, 1f))
-        );
-
-        TextAnimator[] t = new TextAnimator[] {
-            new TextAnimator (tests, res1),
-            new TextAnimator (tests, m1),
+        TextAnimator[] t3 = new TextAnimator[] {
             new TextAnimator (tests, rol1),
-            new TextAnimator (tests, c1),
-            new TextAnimator (tests, res2),
-            new TextAnimator (tests, m2),
-            new TextAnimator (tests, rol2),
-            new TextAnimator (tests, c2),
+            new TextAnimator (tests, rol2)
         };
-        StartCoroutine (TextAnimator.PlayLoop (t));
+        StartCoroutine (test (t3));
+    }
+
+    private IEnumerator test (TextAnimator[] t) {
+        while (true) {
+            yield return StartCoroutine (TextAnimator.Play (t));
+        }
     }
 }
