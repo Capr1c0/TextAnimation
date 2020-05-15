@@ -12,6 +12,8 @@ public class TextAnimationRescale { }
 public class TextAnimationMove { }
 //Animation ColorChange
 public class TextAnimationColorChange { }
+//WaitCommand
+public class TextAnimationWait { }
 
 //Time
 public class TextAnimationTime {
@@ -114,6 +116,9 @@ public class TextAnimator : MonoBehaviour {
                 case TextAnimationColorChange x:
                     AnimationType = x;
                     break;
+                case TextAnimationWait w:
+                    AnimationType = w;
+                    break;
 
                     //Arg
                 case TextAnimationTime t:
@@ -172,6 +177,9 @@ public class TextAnimator : MonoBehaviour {
                 ColorChange ColorChange = Target.AddComponent<ColorChange> ();
                 yield return ColorChange.colorchange (Time, Name, Color);
                 break;
+            case TextAnimationWait tmp:
+                yield return new WaitForSecondsRealtime (Time);
+                break;
             default:
                 break;
         }
@@ -187,7 +195,7 @@ public class TextAnimator : MonoBehaviour {
             for (int i = 0; i < textAnimators.Length; i++) {
                 yield return (textAnimators[i].Play ());
                 //debug
-                yield return new WaitForSecondsRealtime(1f);
+                yield return new WaitForSecondsRealtime (1f);
                 //textAnimators[i].Target.transform.localPosition = new Vector3 (4.1f, 0f, -4f);
             }
         }
