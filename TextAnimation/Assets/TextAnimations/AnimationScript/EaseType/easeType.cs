@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 //debug
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class easeLinear { }
 public class easeInSine { }
@@ -42,7 +42,7 @@ public class EaseSwith {
     }
     public Func<float, float, float> get () {
         //Debug
-        //GameObject.Find ("TestText").GetComponent<Text> ().text = EaseObject.GetType ().ToString ();
+        GameObject.Find ("TestText").GetComponent<Text> ().text = EaseObject.GetType ().ToString ();
         switch (EaseObject) {
             case easeLinear el:
                 return (NowTime, TIME) => { float x = (NowTime / TIME); return x; };

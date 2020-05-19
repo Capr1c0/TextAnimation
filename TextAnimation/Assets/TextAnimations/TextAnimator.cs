@@ -163,7 +163,7 @@ public class TextAnimator : MonoBehaviour {
                 break;
             case TextAnimationRescale tmp:
                 Rescale rescale = Target.AddComponent<Rescale> ();
-                yield return rescale.rescale (Time, VecMin, VecMax);
+                yield return rescale.rescale (Time, VecMin, VecMax, easetype);
                 break;
                 // case TextAnimationNoise tmp:
                 //     Noise noise = Target.AddComponent<Noise> ();
@@ -195,7 +195,7 @@ public class TextAnimator : MonoBehaviour {
             for (int i = 0; i < textAnimators.Length; i++) {
                 yield return (textAnimators[i].Play ());
                 //debug
-                yield return new WaitForSecondsRealtime (1f);
+                // yield return new WaitForSecondsRealtime (1f);
                 //textAnimators[i].Target.transform.localPosition = new Vector3 (4.1f, 0f, -4f);
             }
         }
@@ -208,10 +208,6 @@ public class TextAnimator : MonoBehaviour {
         }
         foreach (Coroutine c in WaitComand) {
             yield return c;
-
         }
-        // for (int i = 0; i < textAnimators.Length; i++) {
-        //     yield return WaitComand[i];
-        // }
     }
 }

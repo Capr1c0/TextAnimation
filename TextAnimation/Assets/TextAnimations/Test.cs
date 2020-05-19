@@ -41,10 +41,22 @@ public class Test : MonoBehaviour {
         List<TextAnimationHash> t = new List<TextAnimationHash> ();
         foreach (object ob in ease) {
             t.Add (new TextAnimationHash (
+                new TextAnimationRescale (),
+                new TextAnimationTime (1f),
+                new TextAnimationAngle (360f),
+                new TextAnimationVecMin (new Vector3 (1f, 1f, 1f)),
+                new TextAnimationVecMax (new Vector3 (2f, 2f, 2f)),
+                ob
+            ));
+        }
+        List<TextAnimationHash> t2 = new List<TextAnimationHash> ();
+        foreach (object ob in ease) {
+            t2.Add (new TextAnimationHash (
                 new TextAnimationRoll (),
                 new TextAnimationTime (1f),
                 new TextAnimationAngle (360f),
-                new TextAnimationVecMax (new Vector3 (-4.1f, 0f, -4f)),
+                new TextAnimationVecMin (new Vector3 (1f, 1f, 1f)),
+                new TextAnimationVecMax (new Vector3 (2f, 2f, 2f)),
                 ob
             ));
         }
@@ -52,13 +64,20 @@ public class Test : MonoBehaviour {
         foreach (TextAnimationHash tah in t) {
             ta.Add (new TextAnimator (tests, tah));
         }
+        List<TextAnimator> ta2 = new List<TextAnimator> ();
+        foreach (TextAnimationHash tah in t2) {
+            ta2.Add (new TextAnimator (tests, tah));
+        }
 
-        StartCoroutine (test (ta.ToArray ()));
+        StartCoroutine (test (ta.ToArray (), ta2.ToArray ()));
     }
 
-    private IEnumerator test (TextAnimator[] t) {
+    private IEnumerator test (TextAnimator[] t1, TextAnimator[] t2) {
         while (true) {
-            yield return StartCoroutine (TextAnimator.PlayLoop (t));
+            for (int i = 0; i < t1.Length; i++) {
+                yield return StartCoroutine (TextAnimator.PlayMultiple (t1[i], t2[i]));
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
         }
     }
 }
